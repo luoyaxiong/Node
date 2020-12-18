@@ -1,1 +1,25 @@
-{"students":[{"name":"Deering","age":"34","gender":"0","hobbies":"reading","id":"0"},{"name":"Deering","age":"3","gender":"0","hobbies":"ski","id":"2"},{"name":"Financie","age":"32","gender":"0","hobbies":"","id":"3"}]}
+{
+  "students": [
+    {
+      "name": "Deering",
+      "age": "34",
+      "gender": "0",
+      "hobbies": "reading",
+      "id": "0"
+    },
+    {
+      "name": "Deering",
+      "age": "3",
+      "gender": "0",
+      "hobbies": "ski",
+      "id": "2"
+    },
+    {
+      "name": "Financie",
+      "age": "32",
+      "gender": "0",
+      "hobbies": "",
+      "id": "3"
+    }
+  ]
+}

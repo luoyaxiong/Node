@@ -1,6 +1,7 @@
 const express = require('express')
 const stu = require('./student')
 const fs = require('fs')
+const { log } = require('console')
 
 
 const router = express.Router()
@@ -11,8 +12,9 @@ router.get('/', (req, res) => {
   res.redirect('/students')
 })
 
+// retrive
 router.get('/students', (req, res) => {
-  stu.retrive((err, students) => {
+  stu.find((err, students) => {
     if (err) {
       res.status(500).send('server error')
     }
@@ -26,6 +28,7 @@ router.get('/students/new', (req, res) => {
   res.render('new.html')
 })
 
+// creat
 router.post('/students/new', (req, res) => {
   const student = req.body
   stu.create(student, (err) => {
@@ -36,37 +39,40 @@ router.post('/students/new', (req, res) => {
   })
 })
 
+// findById
 router.get('/students/edit', (req, res) => {
-  stu.findById(req.query.id,(err,idStudent) => {
+  stu.findById(req.query.id,(err,student) => {
     if (err) {
       res.status(500).send('server error')
     }
-    res.render('edit.html', {'student':idStudent})
+    res.render('edit.html', {'student':student})
   })
 })
 
+// 
 router.post('/students/edit', (req, res) => {
   // 1. 接受post的内容
   const student = req.body
-  console.log(student);
+  student.id = student.id.replace(/"/gi,"")
   // 2. 更新data.json
-  stu.update(student,(err) => {
+  stu.updateOne({_id:req.body.id},student,(err,doc) => {
     if (err) {
       res.status(500).send('server error')
     }
+    console.log('doc: ',doc);
     // 3. redirect
     res.redirect('/students')
   })
   
 })
 
+// delete
 router.get('/students/delete', (req, res) => {
-  const id = req.query.id
-  stu.dalete(id,(err) => {
+  const student_id = req.query.id
+  stu.deleteOne({_id: student_id },(err, doc) => {
     if (err) {
       res.status(500).send('server error')
     }
-    // 3. redirect
     res.redirect('/students')
   })
 })
