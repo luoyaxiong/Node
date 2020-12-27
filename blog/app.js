@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 
 const app = express()
-const port = 5000
+const port = 4000
 
 app.use('/public', express.static(path.join(__dirname, './public')))
 app.use('/node_modules', express.static(path.join(__dirname, './node_modules')))
