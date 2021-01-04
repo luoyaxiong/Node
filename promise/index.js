@@ -51,6 +51,7 @@ promiseReadFile('./a.text')
     console.log(data);
   })
 
+  // 链式
 
 // p1
 //   .then(
